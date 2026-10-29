@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Стройпрогресс и Орбита — Группа строительных компаний в Калуге</title>
+    <style>
+        /* Базовые стили */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { line-height: 1.6; color: #333; background-color: #f9f9f9; scroll-behavior: smooth; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Шапка */
+        header { background-color: #2b2b2b; color: #fff; padding: 15px 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .logo { display: flex; align-items: center; text-decoration: none; transition: opacity 0.3s; }
+        .logo:hover { opacity: 0.9; }
+        .logo-svg { height: 75px; width: auto; }
+        
+        .header-right { display: flex; align-items: center; gap: 25px; flex-wrap: wrap; }
+
+        /* Номер телефона */
+        .header-phone {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+            white-space: nowrap;
+        }
+        .header-phone:hover { color: #f39c12; }
+        .header-phone .phone-icon { font-size: 20px; color: #f39c12; }
+
+        /* Иконка ВК в шапке */
+        .header-vk { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; background-color: #0077FF; border-radius: 50%; color: #fff; text-decoration: none; font-weight: 800; font-size: 16px; transition: background 0.3s, transform 0.2s; box-shadow: 0 2px 8px rgba(0,119,255,0.4); }
+        .header-vk:hover { background-color: #005bd1; transform: scale(1.05); }
+
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        nav a { color: #fff; text-decoration: none; font-weight: 500; transition: color 0.3s; font-size: 16px; }
+        nav a:hover { color: #f39c12; }
+
+        /* Hero */
+        .hero { background: linear-gradient(rgba(26, 43, 76, 0.85), rgba(26, 43, 76, 0.9)), url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; color: #fff; padding: 100px 0; text-align: center; }
+        .hero h1 { font-size: 42px; margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 20px; max-width: 700px; margin: 0 auto 35px; opacity: 0.9; }
+        .hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .hero-btn { display: inline-block; font-size: 20px; font-weight: 700; color: #1a2b4c; background-color: #f39c12; text-decoration: none; padding: 16px 40px; border-radius: 8px; transition: background 0.3s, transform 0.1s; box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4); }
+        .hero-btn:hover { background-color: #e67e22; transform: translateY(-2px); }
+        .hero-btn-vk { display: inline-block; font-size: 20px; font-weight: 700; color: #fff; background-color: #0077FF; text-decoration: none; padding: 16px 40px; border-radius: 8px; transition: background 0.3s, transform 0.1s; box-shadow: 0 4px 15px rgba(0,119,255,0.4); display: flex; align-items: center; gap: 10px; }
+        .hero-btn-vk:hover { background-color: #005bd1; transform: translateY(-2px); }
+        .vk-icon-white { width: 24px; height: 24px; fill: #fff; }
+
+        /* Форма */
+        .form-section { background-color: #fff; padding: 50px 0; border-bottom: 1px solid #e0e0e0; }
+        .form-container { max-width: 700px; margin: 0 auto; background: #f4f7fc; padding: 35px 40px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border-left: 6px solid #f39c12; }
+        .form-container h2 { color: #1a2b4c; margin-bottom: 10px; font-size: 28px; }
+        .form-container p { margin-bottom: 25px; color: #666; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 600; color: #1a2b4c; font-size: 14px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #f39c12; box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2); }
+        .form-group textarea { height: 100px; resize: vertical; }
+        .btn { display: inline-block; background-color: #f39c12; color: #1a2b4c; padding: 14px 35px; border: none; border-radius: 6px; font-size: 18px; font-weight: 700; cursor: pointer; transition: background 0.3s, transform 0.1s; text-decoration: none; }
+        .btn:hover { background-color: #e67e22; transform: translateY(-2px); }
+
+        /* О нас */
+        .about-section { padding: 70px 0; background-color: #fff; }
+        .section-title { text-align: center; font-size: 34px; color: #1a2b4c; margin-bottom: 15px; position: relative; }
+        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background-color: #f39c12; margin: 15px auto 0; border-radius: 2px; }
+        .about-content { display: flex; gap: 40px; margin-top: 40px; align-items: center; flex-wrap: wrap; }
+        .about-text { flex: 1 1 400px; font-size: 17px; color: #444; }
+        .about-text p { margin-bottom: 15px; }
+        .about-image { flex: 1 1 300px; background: linear-gradient(135deg, #2b2b2b, #1a1a1a); height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 20px; }
+
+        /* Услуги */
+        .services-section { padding: 70px 0; background-color: #f4f7fc; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .service-card { background: #fff; padding: 30px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s; border-bottom: 4px solid #f39c12; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        
+        .service-icon { margin-bottom: 20px; }
+        .service-icon svg { width: 50px; height: 50px; stroke: #f39c12; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        
+        .service-card h3 { color: #1a2b4c; margin-bottom: 10px; font-size: 20px; }
+        .service-card p { color: #666; font-size: 15px; }
+
+        /* Контакты */
+        .contacts-section { padding: 70px 0; background-color: #1a2b4c; color: #fff; }
+        .contacts-section .section-title { color: #fff; }
+        .contacts-section .section-title::after { background-color: #f39c12; }
+        .contacts-content { display: flex; justify-content: center; align-items: flex-start; gap: 50px; margin-top: 40px; flex-wrap: wrap; }
+        .contact-block { display: flex; align-items: flex-start; gap: 15px; max-width: 350px; }
+        .contact-icon { font-size: 30px; color: #f39c12; margin-top: 3px; }
+        .contact-icon-vk { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background-color: #0077FF; border-radius: 50%; color: #fff; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+        .contact-block h3 { font-size: 18px; margin-bottom: 5px; color: #f39c12; }
+        .contact-block p { font-size: 16px; opacity: 0.9; line-height: 1.4; }
+        .contact-block a { color: #fff; text-decoration: none; font-weight: 600; }
+        .contact-block a:hover { color: #f39c12; }
+        .contact-block a.vk-link { color: #5ea9ff; }
+        .contact-block a.vk-link:hover { color: #fff; }
+        .contact-block a.mail-link { color: #f39c12; }
+        .contact-block a.mail-link:hover { color: #fff; }
+
+        /* Подвал */
+        footer { background-color: #1a1a1a; color: #aaa; text-align: center; padding: 25px 0; font-size: 14px; }
+
+        /* Адаптивность */
+        @media (max-width: 850px) {
+            .header-content, .header-right { flex-direction: column; gap: 15px; }
+            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .logo-svg { height: 60px; }
+            .hero { padding: 70px 0; }
+            .hero h1 { font-size: 30px; }
+            .hero p { font-size: 17px; }
+            .hero-buttons { flex-direction: column; align-items: stretch; max-width: 300px; margin: 0 auto; }
+            .hero-btn, .hero-btn-vk { width: 100%; justify-content: center; font-size: 17px; padding: 14px 25px; }
+            .form-container { padding: 25px 20px; }
+            .about-content { flex-direction: column; }
+            .contacts-content { flex-direction: column; align-items: center; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <svg class="logo-svg" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+                    <g stroke="#f39c12" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M 70 130 L 70 85 L 100 50 L 100 130" />
+                        <path d="M 105 130 L 105 40 L 145 15 L 170 35 L 170 130" />
+                        <path d="M 155 130 L 155 80 L 210 80 L 210 130" />
+                        <path d="M 40 130 L 230 130" />
+                        <rect x="168" y="92" width="8" height="8" fill="#f39c12" stroke="none"/>
+                        <rect x="186" y="92" width="8" height="8" fill="#f39c12" stroke="none"/>
+                        <rect x="168" y="110" width="8" height="8" fill="#f39c12" stroke="none"/>
+                        <rect x="186" y="110" width="8" height="8" fill="#f39c12" stroke="none"/>
+                        <path d="M 120 130 L 120 65 L 145 50" />
+                    </g>
+                    <text x="140" y="152" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">СТРОЙПРОГРЕСС</text>
+                    <text x="140" y="170" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="1">И ОРБИТА</text>
+                </svg>
+            </a>
+            <div class="header-right">
+                <a href="tel:+79208721818" class="header-phone">
+                    <span class="phone-icon">📞</span> +7 920 872 18 18
+                </a>
+                
+                <a href="https://vk.ru/club234166732" target="_blank" rel="noopener" class="header-vk" title="Мы ВКонтакте">VK</a>
+                <nav>
+                    <ul>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Строим надёжно и в срок</h1>
+            <p>Группа строительных компаний «Стройпрогресс и Орбита» — профессиональные строительные решения в Калуге и области.</p>
+            <div class="hero-buttons">
+                <a href="#request-form" class="hero-btn">Оставить заявку</a>
+                <a href="https://vk.ru/club234166732" target="_blank" rel="noopener" class="hero-btn-vk">
+                    <svg class="vk-icon-white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.785 16.241s.288-.032.436-.194c.136-.148.132-.427.132-.427s-.02-1.304.576-1.496c.588-.19 1.341 1.26 2.14 1.818.605.422 1.064.33 1.064.33l2.137-.03s1.117-.07.587-.948c-.043-.072-.31-.655-1.604-1.853-1.354-1.256-1.173-1.052.458-3.226.994-1.324 1.392-2.131 1.268-2.477-.118-.329-.848-.242-.848-.242l-2.405.015s-.178-.025-.31.055c-.128.078-.21.26-.21.26s-.382 1.017-.892 1.882c-1.075 1.826-1.505 1.923-1.681 1.81-.407-.264-.305-1.062-.305-1.629 0-1.77.268-2.508-.522-2.699-.262-.063-.455-.105-1.125-.112-.86-.008-1.587.003-1.999.205-.274.134-.486.433-.357.45.16.021.522.098.714.36.247.338.238 1.098.238 1.098s.143 2.083-.333 2.342c-.327.178-.776-.185-1.74-1.846-.494-.853-.867-1.796-.867-1.796s-.072-.176-.2-.271c-.156-.115-.374-.151-.374-.151l-2.286.015s-.343.01-.468.159c-.111.132-.008.405-.008.405s1.79 4.189 3.817 6.3c1.858 1.935 3.968 1.808 3.968 1.808h.956z"/></svg>
+                    Мы ВКонтакте
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="request-form">
+        <div class="container">
+            <div class="form-container">
+                <h2>Оставить заявку</h2>
+                <p>Заполните форму, и мы свяжемся с вами для обсуждения проекта.</p>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя *</label>
+                        <input type="text" id="name" name="name" placeholder="Иван Петров" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (999) 123-45-67" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Опишите ваш проект</label>
+                        <textarea id="message" name="message" placeholder="Например: строительство загородного дома 150 кв.м."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">О нас</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Группа строительных компаний «Стройпрогресс и Орбита»</strong> — это объединение профессионалов, базирующееся в Калуге. Мы специализируемся на комплексных строительных работах: от фундамента до отделки.</p>
+                    <p>Наш коллектив — это опытные инженеры, прорабы и строители, которые реализовали десятки успешных проектов в Калужской области. Мы ценим доверие клиентов и всегда работаем с гарантией качества.</p>
+                    <p>Офис компании расположен по адресу: <strong>г. Калуга, ул. Социалистическая, д. 11</strong>. Приглашаем к сотрудничеству частных заказчиков и организации.</p>
+                    <p>Связаться с нами можно по телефону <a href="tel:+79208721818" style="color:#e67e22; font-weight:700; text-decoration:none;">+7 920 872 18 18</a> или в сообществе <a href="https://vk.ru/club234166732" target="_blank" rel="noopener" style="color:#0077FF; font-weight:700; text-decoration:none;">ВКонтакте</a>.</p>
+                </div>
+                <div class="about-image">
+                    <svg viewBox="0 0 280 180" style="width: 100%; max-width: 250px; height: auto;" xmlns="http://www.w3.org/2000/svg">
+                        <g stroke="#f39c12" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M 70 130 L 70 85 L 100 50 L 100 130" />
+                            <path d="M 105 130 L 105 40 L 145 15 L 170 35 L 170 130" />
+                            <path d="M 155 130 L 155 80 L 210 80 L 210 130" />
+                            <path d="M 40 130 L 230 130" />
+                            <rect x="168" y="92" width="8" height="8" fill="#f39c12" stroke="none"/>
+                            <rect x="186" y="92" width="8" height="8" fill="#f39c12" stroke="none"/>
+                            <rect x="168" y="110" width="8" height="8" fill="#f39c12" stroke="none"/>
+                            <rect x="186" y="110" width="8" height="8" fill="#f39c12" stroke="none"/>
+                            <path d="M 120 130 L 120 65 L 145 50" />
+                        </g>
+                        <text x="140" y="152" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">СТРОЙПРОГРЕСС</text>
+                        <text x="140" y="170" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#f39c12" text-anchor="middle" letter-spacing="1">И ОРБИТА</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    </div>
+                    <h3>Строительство домов</h3>
+                    <p>Возведение частных домов, коттеджей и дач под ключ с использованием современных материалов.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="22" x2="9" y2="22"></line><path d="M9 6h.01M15 6h.01M9 10h.01M15 10h.01M9 14h.01M15 14h.01M9 18h.01M15 18h.01"></path></svg>
+                    </div>
+                    <h3>Коммерческое строительство</h3>
+                    <p>Строительство офисных зданий, торговых площадей и производственных помещений.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
+                    <h3>Ремонт и отделка</h3>
+                    <p>Внутренняя и наружная отделка, реконструкция зданий, капитальный ремонт помещений.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 3h20v14H2z"></path><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M6 7l4 4"></path><path d="M18 7l-4 4"></path></svg>
+                    </div>
+                    <h3>Проектирование</h3>
+                    <p>Разработка проектной документации, инженерные изыскания и авторский надзор.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacts-section" id="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-content">
+                <div class="contact-block">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <h3>Адрес офиса</h3>
+                        <p>г. Калуга, ул. Социалистическая, д. 11<br>
+                        <a href="https://yandex.ru/maps/-/CLFDbJYO" target="_blank" rel="noopener">Посмотреть на Яндекс.Картах</a></p>
+                    </div>
+                </div>
+                <div class="contact-block">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <h3>Телефон</h3>
+                        <p><a href="tel:+79208721818">+7 920 872 18 18</a></p>
+                    </div>
+                </div>
+                <div class="contact-block">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <h3>Email</h3>
+                        <!-- Здесь заменен адрес почты -->
+                        <p><a href="mailto:Chigaev90@mail.ru" class="mail-link">Chigaev90@mail.ru</a></p>
+                    </div>
+                </div>
+                <div class="contact-block">
+                    <div class="contact-icon-vk">VK</div>
+                    <div>
+                        <h3>Мы во ВКонтакте</h3>
+                        <p><a href="https://vk.ru/club234166732" target="_blank" rel="noopener" class="vk-link">vk.ru/club234166732</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Стройпрогресс и Орбита. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!name || !phone) {
+                alert('Пожалуйста, заполните имя и телефон.');
+                return;
+            }
+
+            alert(`Спасибо, ${name}! Ваша заявка принята. Мы позвоним вам по номеру ${phone}.`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
